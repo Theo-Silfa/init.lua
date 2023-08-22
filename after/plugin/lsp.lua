@@ -5,6 +5,7 @@ lsp.on_attach(function(client, bufnr)
 
   vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', {buffer = true})
   vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', {buffer = true})
+  vim.keymap.set('n', 'gf', '<cmd>Telescope lsp_document_symbols<cr>', {buffer = true})
 end)
 
 -- Fix Undefined global 'vim'
