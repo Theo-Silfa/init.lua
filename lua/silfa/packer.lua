@@ -38,4 +38,6 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/vim-be-good'
 
   use 'lewis6991/gitsigns.nvim'
+
+  use 'ojroques/nvim-osc52'
 end)
