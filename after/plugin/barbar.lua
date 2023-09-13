@@ -5,6 +5,10 @@ require'barbar'.setup {
     -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
     preset = 'default',
   },
+  -- Set the filetypes which barbar will offset itself for
+  sidebar_filetypes = {
+    NvimTree = true,
+  },
 }
 
 local map = vim.api.nvim_set_keymap
@@ -30,7 +34,7 @@ map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Pin/unpin buffer
 map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
-map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands

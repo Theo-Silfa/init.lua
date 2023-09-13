@@ -1,7 +1,8 @@
 vim.g.mapleader = ' '
 
--- open file EXplorer
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- open file EXplorer (nvimtree)
+vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<cr>")
+vim.keymap.set("n", "<leader>pV", ":NvimTreeFindFileToggle<cr>")
 
 -- move selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

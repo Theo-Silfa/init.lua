@@ -36,6 +36,14 @@ return require('packer').startup(function(use)
 
   use 'ojroques/nvim-osc52'
 
-  use 'nvim-tree/nvim-web-devicons'
+  use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+          'nvim-tree/nvim-web-devicons',
+      },
+  }
+
   use 'romgrk/barbar.nvim'
+
+  use 'mrjones2014/smart-splits.nvim'
 end)
