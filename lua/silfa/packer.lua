@@ -46,4 +46,11 @@ return require('packer').startup(function(use)
   use 'romgrk/barbar.nvim'
 
   use 'mrjones2014/smart-splits.nvim'
+
+  use 'rebelot/heirline.nvim'
+
+  use {
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+  }
 end)
