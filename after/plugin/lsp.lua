@@ -1,4 +1,6 @@
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero').preset({
+    name = 'recommended',
+})
 local navic = require("nvim-navic")
 
 lsp.on_attach(function(client, bufnr)
@@ -20,22 +22,17 @@ lsp.ensure_installed({
   'lua_ls'
 })
 
-lsp.preset({
-  manage_nvim_cmp = {
-    set_source = 'recommended', 
-  }
-})
+lsp.setup()
 
 local cmp = require('cmp')
 
 cmp.setup({
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-  },
-  preselect = 'item',
-  completion = {
-    completeopt = 'menu,menuone,noinsert'
-  },
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+    },
+    preselect = 'item',
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
 })
 
-lsp.setup()
