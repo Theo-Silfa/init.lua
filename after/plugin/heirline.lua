@@ -1,20 +1,21 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 
---local palette = require("rose-pine.palette")
+local palette = require("rose-pine.palette")
 --print(vim.inspect(palette))
 
 local colors = {
-    bright_bg = utils.get_highlight("Folded").bg,
-    bright_fg = utils.get_highlight("Folded").fg,
-    red = utils.get_highlight("DiagnosticError").fg,
-    dark_red = utils.get_highlight("DiffDelete").bg,
-    green = utils.get_highlight("String").fg,
-    blue = utils.get_highlight("Function").fg,
-    gray = utils.get_highlight("NonText").fg,
-    orange = utils.get_highlight("Constant").fg,
-    purple = utils.get_highlight("Statement").fg,
-    cyan = utils.get_highlight("Special").fg,
+    bright_bg = palette.overlay,
+    bright_fg = palette.base,
+    red = palette.love,
+    dark_red = palette.love,
+    green = palette.foam,
+    blue = palette.pine,
+    gray = palette.muted,
+    orange = palette.gold,
+    purple = palette.iris,
+    cyan = palette.foam,
+    text = palette.text,
     diag_warn = utils.get_highlight("DiagnosticWarn").fg,
     diag_error = utils.get_highlight("DiagnosticError").fg,
     diag_hint = utils.get_highlight("DiagnosticHint").fg,
@@ -141,7 +142,7 @@ local FileName = {
         self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
         if self.lfilename == "" then self.lfilename = "[No Name]" end
     end,
-    hl = { fg = utils.get_highlight("Directory").fg },
+    hl = { fg = "green" },
 
     flexible = 2,
 
@@ -200,7 +201,7 @@ local FileType = {
     provider = function()
         return string.upper(vim.bo.filetype)
     end,
-    hl = { fg = utils.get_highlight("Type").fg, bold = true },
+    hl = { fg = "purple", bold = true },
 }
 
 -- We're getting minimalists here!
@@ -210,7 +211,7 @@ local Ruler = {
     -- %c = column number
     -- %P = percentage through file of displayed window
     provider = "%7(%l/%3L%):%2c %P",
-    hl = { fg = "" }
+    hl = { fg = "text" }
 }
 
 -- I take no credits for this! :lion:
@@ -226,7 +227,7 @@ local ScrollBar ={
         local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
         return string.rep(self.sbar[i], 2)
     end,
-    hl = { fg = "blue", bg = "bright_bg" },
+    hl = { fg = "text", bg = "bright_bg" },
 }
 
 local Navic = {
@@ -312,7 +313,7 @@ local HelpFileName = {
         local filename = vim.api.nvim_buf_get_name(0)
         return vim.fn.fnamemodify(filename, ":t")
     end,
-    hl = { fg = colors.blue },
+    hl = { fg = "blue" },
 }
 
 local Align = { provider = "%=", hl = { fg = "bright_bg" } }
