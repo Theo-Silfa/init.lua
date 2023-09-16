@@ -4,6 +4,8 @@ require'barbar'.setup {
 
     -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
     preset = 'default',
+    --fix annoying seperator which is not lined while nvimtree is open
+    separator = {left = '│', right = ''},
   },
   -- Set the filetypes which barbar will offset itself for
   sidebar_filetypes = {
