@@ -11,7 +11,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gf', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable symbol_width=100<cr>', {buffer = true})
   vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations fname_width=100<cr>', {buffer = true})
 
-  navic.attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+      navic.attach(client, bufnr)
+  end
 end)
 
 -- Fix Undefined global 'vim'
@@ -25,10 +27,13 @@ lsp.ensure_installed({
 lsp.setup()
 
 local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<Tab>'] = cmp_action.tab_complete(),
+        ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
     },
     preselect = 'item',
     completion = {
