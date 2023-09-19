@@ -23,5 +23,10 @@ end
 -- empty setup using defaults
 require("nvim-tree").setup{
     on_attach = my_on_attach,
+    actions = {
+      open_file = {
+          resize_window = false,
+      },
+    },
 }
 
