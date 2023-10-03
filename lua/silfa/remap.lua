@@ -1,8 +1,15 @@
 vim.g.mapleader = ' '
 
 -- open file EXplorer (nvimtree)
+local tree_api = require("nvim-tree.api")
 vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<cr>")
-vim.keymap.set("n", "<leader>pV", ":NvimTreeFindFileToggle<cr>")
+vim.keymap.set("n", "<leader>pV", function ()
+    if tree_api.tree.is_visible() then
+        tree_api.tree.find_file()
+    else
+        tree_api.tree.toggle({find_file = true})
+    end
+end)
 
 -- move selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
