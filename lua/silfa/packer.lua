@@ -55,4 +55,6 @@ return require('packer').startup(function(use)
       "SmiteshP/nvim-navic",
       requires = "neovim/nvim-lspconfig"
   }
+
+  use 'axelf4/vim-strip-trailing-whitespace'
 end)
