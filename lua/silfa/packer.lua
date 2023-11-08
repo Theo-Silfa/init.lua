@@ -57,4 +57,6 @@ return require('packer').startup(function(use)
   }
 
   use 'axelf4/vim-strip-trailing-whitespace'
+
+  use {'dgagn/diagflow.nvim'}
 end)

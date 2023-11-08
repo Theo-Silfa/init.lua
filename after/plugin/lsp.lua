@@ -41,3 +41,9 @@ cmp.setup({
     },
 })
 
+require('diagflow').setup({
+    format = function(diagnostic)
+      return diagnostic.message..' [' ..diagnostic.code..']'
+    end,
+    show_sign = true,
+})
