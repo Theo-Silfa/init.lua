@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
 		  {'L3MON4D3/LuaSnip'},     -- Required
           {'hrsh7th/cmp-buffer'},
           {'hrsh7th/cmp-path'},
+
+          -- Others
+          {'onsails/lspkind.nvim'}
 	  }
   }
 
@@ -59,4 +62,16 @@ return require('packer').startup(function(use)
   use 'axelf4/vim-strip-trailing-whitespace'
 
   use {'dgagn/diagflow.nvim'}
+
+  use {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = { "InsertEnter", "LspAttach" },
+      fix_pairs = true,
+      config = function()
+          require("copilot").setup({
+              panel = { enabled = false },
+          })
+      end,
+  }
 end)
