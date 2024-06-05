@@ -1,7 +1,9 @@
 require('rose-pine').setup({
-    disable_background = true,
-    disable_italics = true,
-    dim_nc_background = true,
+    styles = {
+        transparency = true,
+        italic = false,
+    },
+    dim_inactive_windows = true,
 })
 
 function ColorMyPencils(color) 

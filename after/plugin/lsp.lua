@@ -11,17 +11,34 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gf', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable symbol_width=100<cr>', {buffer = true})
   vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations fname_width=100<cr>', {buffer = true})
 
-  if client.server_capabilities.documentSymbolProvider then
-      navic.attach(client, bufnr)
+  if client.server_capabilities ~= nil then
+      if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+      end
   end
 end)
 
--- Fix Undefined global 'vim'
-lsp.nvim_workspace()
+local lua_opts = lsp.nvim_lua_ls()
+require('lspconfig').lua_ls.setup(lua_opts)
 
-lsp.ensure_installed({
-  'clangd',
-  'lua_ls'
+require("mason").setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {'clangd', lua_ls},
+  handlers = {
+    lsp.default_setup,
+    clangd = function()
+      require('lspconfig').clangd.setup({
+        cmd = {
+            "/opt/llvm-10/bin/clangd",
+            "--offset-encoding=utf-16",
+            "--clang-tidy",
+        }})
+    end,
+    lua_ls = function()
+        local lua_opts = lsp.nvim_lua_ls()
+        require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
 })
 
 lsp.setup()
@@ -32,7 +49,8 @@ local lspkind = require('lspkind')
 
 cmp.setup({
     mapping = {
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<C-y>']= cmp.mapping.confirm({select = false}),
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<Tab>'] = cmp_action.tab_complete(),
         ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
         ['<Down>'] = cmp.mapping(function(fallback)
@@ -93,6 +111,14 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
 })
+
+cmp.event:on("menu_opened", function()
+  vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+  vim.b.copilot_suggestion_hidden = false
+end)
 
 require('diagflow').setup({
     format = function(diagnostic)

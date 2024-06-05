@@ -1,5 +1,3 @@
-vim.g.mapleader = ' '
-
 -- open file EXplorer (nvimtree)
 local tree_api = require("nvim-tree.api")
 vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<cr>")
@@ -30,3 +28,11 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 -- replace the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+--apply fix from lsp
+local opts = { noremap=true, silent=true }
+local function quickfix()
+    vim.lsp.buf.code_action({
+        apply = true
+    })
+end
+vim.keymap.set('n', '<leader>qf', quickfix, opts)
