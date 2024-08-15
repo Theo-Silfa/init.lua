@@ -36,3 +36,11 @@ local function quickfix()
     })
 end
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
+
+--diagnostic navigation
+vim.keymap.set('n', ']t', function()
+    vim.diagnostic.goto_next({float = false})
+end)
+vim.keymap.set('n', '[t', function()
+    vim.diagnostic.goto_prev({float = false})
+end)

@@ -10,6 +10,7 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
         vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
+        vim.keymap.set('n', '<leader>tt', builtin.diagnostics, {})
 
         local actions = require("telescope.actions")
         require("telescope").setup({
