@@ -15,7 +15,17 @@ return {
             builtin.grep_string({ search = word })
         end)
         vim.keymap.set('n', '<leader>ps', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
+            local current_entry = require("oil").get_cursor_entry()
+            if (current_entry ~= nil) then
+                local full_path = require("oil").get_current_dir(0) .. current_entry.name
+                if (current_entry.type == "directory") then
+                    builtin.grep_string({ cwd = full_path, search = vim.fn.input("Grep "..current_entry.name.." > ") })
+                elseif (current_entry.type == "file") then
+                    builtin.grep_string({ search_dirs = {full_path}, search = vim.fn.input("Grep "..current_entry.name.." > ") })
+                end
+            else
+                builtin.grep_string({ search = vim.fn.input("Grep cwd > ") })
+            end
         end)
         vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>tt', builtin.diagnostics, {})
