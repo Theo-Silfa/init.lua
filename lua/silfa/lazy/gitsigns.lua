@@ -1,5 +1,6 @@
 return {
     'lewis6991/gitsigns.nvim',
+    dependencies = { 'rose-pine/neovim' },
     config = function ()
         require('gitsigns').setup{
             on_attach = function(bufnr)
