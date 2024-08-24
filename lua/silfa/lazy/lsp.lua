@@ -73,6 +73,9 @@ return {
 
             require('diagflow').setup({
                 format = function(diagnostic)
+                    if (diagnostic.code == nil) then
+                        return diagnostic.message
+                    end
                     return diagnostic.message .. ' [' .. diagnostic.code .. ']'
                 end,
                 show_sign = true,
@@ -131,7 +134,7 @@ return {
             })
 
             require('mason-lspconfig').setup({
-                ensure_installed = { "clangd", "lua_ls" },
+                ensure_installed = { "clangd", "lua_ls", "pyright" },
                 handlers = {
                     -- this first function is the "default handler"
                     -- it applies to every language server without a "custom handler"
