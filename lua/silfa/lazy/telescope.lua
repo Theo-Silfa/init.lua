@@ -30,6 +30,7 @@ return {
         vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>tt', builtin.diagnostics, {})
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+        vim.keymap.set('n', '<leader>r', builtin.pickers, {})
 
         local actions = require("telescope.actions")
         require("telescope").setup({
@@ -38,6 +39,9 @@ return {
                     i = {
                         ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
                     },
+                },
+                cache_picker = {
+                    num_pickers = 20,
                 },
             },
         })

@@ -59,5 +59,7 @@ return {
         -- Other:
         -- :BarbarEnable - enables barbar (enabled by default)
         -- :BarbarDisable - very bad command, should never be used
+
+        map('n', '<A-x>', '<Cmd>BufferCloseAllButPinned<CR>', opts)
     end
 }

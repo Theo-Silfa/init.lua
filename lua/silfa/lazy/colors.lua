@@ -15,6 +15,7 @@ return {
             styles = {
                 transparency = true,
                 italic = false,
+                bold = false,
             },
             dim_inactive_windows = true,
         })
