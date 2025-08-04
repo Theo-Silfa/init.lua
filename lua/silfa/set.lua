@@ -32,3 +32,5 @@ vim.opt.colorcolumn = "120"
 vim.diagnostic.config({
   virtual_text = false
 })
+
+vim.opt.clipboard:append("unnamedplus")
