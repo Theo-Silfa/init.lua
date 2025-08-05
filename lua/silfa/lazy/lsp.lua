@@ -7,8 +7,18 @@ return {
     },
     {
         'williamboman/mason.nvim',
+        tag = 'v1.11.0',
         lazy = false,
         config = true,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        tag = 'v1.32.0',
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
     },
     -- Autocompletion
     {
@@ -85,6 +95,7 @@ return {
     -- LSP
     {
         'neovim/nvim-lspconfig',
+        tag = 'v1.8.0',
         cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {

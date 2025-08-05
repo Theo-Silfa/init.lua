@@ -1,5 +1,6 @@
 return {
     'rebelot/heirline.nvim',
+    tag = 'v1.0.7',
     dependencies = { 'linrongbin16/lsp-progress.nvim'},
     config = function ()
         local conditions = require("heirline.conditions")
