@@ -1,6 +1,5 @@
 return {
     'rebelot/heirline.nvim',
-    tag = 'v1.0.7',
     dependencies = { 'linrongbin16/lsp-progress.nvim'},
     config = function ()
         local conditions = require("heirline.conditions")
@@ -307,7 +306,7 @@ return {
 
             provider  = function()
                 local names = {}
-                for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+                for i, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
                     table.insert(names, server.name)
                 end
                 return " [" .. table.concat(names, " ") .. "]"
@@ -401,7 +400,7 @@ return {
                 end
 
                 local sign = "" -- nf-fa-gear \uf013
-                local lsp_clients = vim.lsp.get_active_clients()
+                local lsp_clients = vim.lsp.get_clients()
                 local messages_map = {}
                 for _, climsg in ipairs(client_messages) do
                     messages_map[climsg.name] = climsg.body

@@ -2,14 +2,12 @@ return {
     -- LSP
     {
         'neovim/nvim-lspconfig',
-        tag = 'v1.8.0',
         cmd = 'LspInfo',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'hrsh7th/cmp-nvim-lsp'
         },
         config = function()
-            local lspconfig = require('lspconfig')
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             local lsp_attach = function(client, bufnr)
@@ -36,13 +34,18 @@ return {
                 end
             end
 
-            lspconfig.clangd.setup({
+            local lsp_setup = function(server, opts)
+                vim.lsp.config(server, opts)
+                vim.lsp.enable(server)
+            end
+
+            lsp_setup("clangd", {
                 on_attach = lsp_attach,
                 cmd = { "clangd", "--offset-encoding=utf-16", "--clang-tidy"},
                 capabilities = capabilities
             })
-            lspconfig.lua_ls.setup({on_attach = lsp_attach, capabilities = capabilities})
-            lspconfig.pyright.setup({on_attach = lsp_attach, capabilities = capabilities})
+            lsp_setup("lua_ls", {on_attach = lsp_attach, capabilities = capabilities})
+            lsp_setup("pyright", {on_attach = lsp_attach, capabilities = capabilities})
         end
     },
     {
