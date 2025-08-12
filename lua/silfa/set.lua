@@ -31,7 +31,29 @@ vim.diagnostic.config({
   virtual_text = false
 })
 
-vim.opt.splitright = true
+local my_paste = function()
+    return function()
+        local content = vim.fn.getreg('"')
+        return vim.split(content, '\n')
+    end
+end
 
-vim.opt.shortmess:append('I')
-vim.opt.showmode = false
+if (os.getenv('SSH_TTY') == nil)
+then
+    vim.opt.clipboard:append("unnamedplus")
+else
+    vim.opt.clipboard:append("unnamedplus")
+    vim.g.clipboard = {
+      name = 'OSC 52',
+      copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      },
+      paste = {
+        ["+"] = my_paste(),
+        ["*"] = my_paste(),
+
+
+    },
+}
+end
