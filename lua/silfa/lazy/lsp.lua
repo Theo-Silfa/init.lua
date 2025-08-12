@@ -5,10 +5,10 @@ return {
         cmd = 'LspInfo',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp'
+            'saghen/blink.cmp'
         },
         config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
 
             local lsp_attach = function(client, bufnr)
                 local opts = { buffer = bufnr }
@@ -49,94 +49,27 @@ return {
         end
     },
     {
-        'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
-        dependencies = {
-            'L3MON4D3/LuaSnip',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'rafamadriz/friendly-snippets',
-            'saadparwaiz1/cmp_luasnip'
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
+        opts = {
+            keymap = {
+                preset = 'none',
+                ['<C-y>'] = { 'select_and_accept' },
+                ['<C-e>'] = { 'cancel' },
+                ['<Tab>'] = { 'select_next', 'fallback' },
+                ['<S-Tab>'] = { 'select_prev', 'fallback' },
+                ['<C-f>'] = { 'snippet_forward', 'fallback' },
+                ['<C-b>'] = { 'snippet_backward', 'fallback' },
+            },
+            completion = { documentation = { auto_show = true } },
+            sources = {
+                providers = {
+                    lsp = { fallbacks = {} }
+                }
+            },
         },
-        config = function()
-            local cmp = require('cmp')
-            local luasnip = require('luasnip')
-
-            local tab_complete = function(select_opts)
-                return cmp.mapping(function(fallback)
-                    local col = vim.fn.col('.') - 1
-
-                    if cmp.visible() then
-                        cmp.select_next_item(select_opts)
-                    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-                        fallback()
-                    else
-                        cmp.complete()
-                    end
-                end, {'i', 's'})
-            end
-
-            local luasnip_jump_forward = function()
-                return cmp.mapping(function(fallback)
-                    if luasnip.locally_jumpable(1) then
-                        luasnip.jump(1)
-                    else
-                        fallback()
-                    end
-                end, {'i', 's'})
-            end
-
-            local luasnip_jump_backward = function()
-                return cmp.mapping(function(fallback)
-                    if luasnip.locally_jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, {'i', 's'})
-            end
-
-            require('luasnip.loaders.from_vscode').lazy_load()
-            require('luasnip').filetype_extend("cpp", {"cppdoc"})
-
-            cmp.setup({
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-y>'] = cmp.mapping.confirm({ select = false }),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<Tab>'] = tab_complete(),
-                    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
-                    ['<Down>'] = cmp.mapping(function(fallback)
-                        cmp.close()
-                        fallback()
-                    end, { "i" }),
-                    ['<Up>'] = cmp.mapping(function(fallback)
-                        cmp.close()
-                        fallback()
-                    end, { "i" }),
-                    ['<C-f>'] = luasnip_jump_forward(),
-                    ['<C-b>'] = luasnip_jump_backward(),
-                }),
-                preselect = 'item',
-                completion = {
-                    completeopt = 'menu,menuone,noinsert'
-                },
-                sources = {
-                    { name = 'nvim_lsp'},
-                    { name = 'buffer'},
-                    { name = 'path'},
-                    { name = 'luasnip'},
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
-            })
-        end
+        --vim.fn.stdpath('data')
     },
     {
         'dgagn/diagflow.nvim',
