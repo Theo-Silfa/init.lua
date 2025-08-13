@@ -31,7 +31,7 @@ vim.diagnostic.config({
   virtual_text = false
 })
 
-vim.opt.winborder = "single"
+vim.opt.winborder = "rounded"
 
 local my_paste = function()
     return function()

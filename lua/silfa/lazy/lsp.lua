@@ -65,7 +65,12 @@ return {
             completion = { documentation = { auto_show = true } },
             sources = {
                 providers = {
-                    lsp = { fallbacks = {} }
+                    lsp = { fallbacks = {} },
+                    snippets = {
+                        opts = {
+                            search_paths = { vim.fn.stdpath('data') .. '/lazy/friendly-snippets/snippets/cpp' },
+                        }
+                    }
                 }
             },
             signature = {
