@@ -26,14 +26,12 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
-
 --show diagnostic messages on hover in the right corner instead
 vim.diagnostic.config({
   virtual_text = false
 })
 
-vim.opt.winborder = "single"
+vim.opt.winborder = "rounded"
 
 local my_paste = function()
     return function()
