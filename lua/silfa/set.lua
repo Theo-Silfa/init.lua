@@ -31,6 +31,8 @@ vim.diagnostic.config({
   virtual_text = false
 })
 
+vim.opt.winborder = "single"
+
 local my_paste = function()
     return function()
         local content = vim.fn.getreg('"')
