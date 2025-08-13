@@ -68,6 +68,12 @@ return {
                     lsp = { fallbacks = {} }
                 }
             },
+            signature = {
+                enabled = true,
+                window = {
+                    show_documentation = false,
+                }
+            }
         },
         --vim.fn.stdpath('data')
     },
