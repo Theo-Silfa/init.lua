@@ -33,6 +33,8 @@ vim.diagnostic.config({
 
 vim.opt.winborder = "rounded"
 
+vim.opt.splitright = true
+
 local my_paste = function()
     return function()
         local content = vim.fn.getreg('"')
@@ -54,8 +56,6 @@ else
       paste = {
         ["+"] = my_paste(),
         ["*"] = my_paste(),
-
-
     },
 }
 end
