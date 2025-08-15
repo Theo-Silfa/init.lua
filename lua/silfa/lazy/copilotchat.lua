@@ -17,22 +17,25 @@ return {
             tool = '🔧 Tool: ',
         },
         show_help = false,              -- Disable help text
-        auto_insert_mode = true,        -- Enter insert mode when opening
+        mappings = {
+            complete = { normal = '', insert = '<C-y>' },
+            close = { normal = 'q', insert = '<C-c>' },
+            reset = { normal = 'cr', insert = '' },
+            submit_prompt = { normal = '<CR>', insert = '<C-s>' },
+            toggle_sticky = { normal = '', insert = '' },
+            accept_diff = { normal = '<A-l>', insert = '' },
+            jump_to_diff = { normal = 'gj', insert = '' },
+            quickfix_diffs = { normal = 'gqd', insert = '' },
+            yank_diff = { normal = 'gy', insert = '' },
+            show_diff = { normal = 'gd', insert = '' },
+            show_info = { normal = '', insert = '' },
+            show_help = { normal = '', insert = '' },
+        }
     },
     config = function(_, opts)
         require("CopilotChat").setup(opts)
 
-        vim.keymap.set('n', '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = 'Open Copilot Chat' })
-        vim.keymap.set('i', '<C-c>', '<cmd>CopilotChatToggle<cr>', { desc = 'Open Copilot Chat in Insert Mode' })
-
-        vim.keymap.set('v', '<leader>cs', function()
-            local input = vim.fn.input("Quick Chat: ")
-            if input ~= "" then
-                require("CopilotChat").ask(input, {
-                    selection = require("CopilotChat.select").visual
-                })
-            end
-        end, { desc = "CopilotChat - Quick chat (selection)" })
+        vim.keymap.set({'n', 'v'}, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = 'Open Copilot Chat' })
 
         vim.api.nvim_create_autocmd("BufEnter", {
             pattern = 'copilot-*',
@@ -40,6 +43,7 @@ return {
                 vim.opt_local.relativenumber = false
                 vim.opt_local.number = false
                 vim.opt_local.conceallevel = 0
+                vim.opt_local.fillchars:append({ eob = " " })
             end
         })
     end,
