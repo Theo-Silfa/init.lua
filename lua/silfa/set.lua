@@ -35,6 +35,8 @@ vim.opt.winborder = "rounded"
 
 vim.opt.splitright = true
 
+vim.opt.shortmess:append('I')
+
 local my_paste = function()
     return function()
         local content = vim.fn.getreg('"')
