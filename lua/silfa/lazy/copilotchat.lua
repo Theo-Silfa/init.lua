@@ -11,6 +11,7 @@ return {
             layout = 'vertical',        -- 'vertical', 'horizontal', 'float'
             width = 0.5,                -- 50% of screen width
         },
+        auto_insert_mode = true,     -- Enter insert mode when opening
         headers = {
             user = '👤 You: ',
             assistant = '🤖 Copilot: ',
@@ -26,7 +27,7 @@ return {
             accept_diff = { normal = '<A-l>', insert = '' },
             jump_to_diff = { normal = 'gj', insert = '' },
             quickfix_diffs = { normal = 'gqd', insert = '' },
-            yank_diff = { normal = 'gy', insert = '' },
+            yank_diff = { normal = 'gy', insert = '', register = '+' },
             show_diff = { normal = 'gd', insert = '' },
             show_info = { normal = '', insert = '' },
             show_help = { normal = '', insert = '' },
