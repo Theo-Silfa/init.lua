@@ -35,10 +35,8 @@ return {
             end
 
             local lsp_setup = function(server, opts)
-                if vim.fn.executable(server) == 1 then
-                    vim.lsp.config(server, opts)
-                    vim.lsp.enable(server)
-                end
+                vim.lsp.config(server, opts)
+                vim.lsp.enable(server)
             end
 
             lsp_setup("clangd", {

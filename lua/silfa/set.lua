@@ -36,6 +36,7 @@ vim.opt.winborder = "rounded"
 vim.opt.splitright = true
 
 vim.opt.shortmess:append('I')
+vim.opt.showmode = false
 
 local my_paste = function()
     return function()
