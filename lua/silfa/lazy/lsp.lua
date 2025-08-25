@@ -10,16 +10,15 @@ return {
         config = function()
             local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-            local lsp_attach = function(client, bufnr)
-                local opts = { buffer = bufnr }
+            local lsp_attach = function(args)
+                local opts = { buffer = args.buf }
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
                 local navic = require('nvim-navic')
 
                 vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references show_line=false<cr>', opts)
-                vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<cr>', opts)
-                vim.keymap.set('n', 'gf',
-                    '<cmd>Telescope lsp_document_symbols ignore_symbols=variable symbol_width=100<cr>', opts)
+                vim.keymap.set('n', 'gh', '<cmd>LspClangdSwitchSourceHeader<cr>', opts)
+                vim.keymap.set('n', 'gf', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable symbol_width=100<cr>', opts)
                 vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations fname_width=100<cr>', opts)
-
                 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
                 vim.keymap.set('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', opts)
                 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -29,10 +28,11 @@ return {
                 vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                 vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-                if client.server_capabilities.documentSymbolProvider then
-                    navic.attach(client, bufnr)
+                if client and client.server_capabilities.documentSymbolProvider then
+                    navic.attach(client, args.buf)
                 end
             end
+            vim.api.nvim_create_autocmd('LspAttach', { callback = lsp_attach});
 
             local lsp_setup = function(server, opts)
                 vim.lsp.config(server, opts)
@@ -40,12 +40,11 @@ return {
             end
 
             lsp_setup("clangd", {
-                on_attach = lsp_attach,
                 cmd = { "clangd", "--offset-encoding=utf-16", "--clang-tidy"},
                 capabilities = capabilities
             })
-            lsp_setup("lua_ls", {on_attach = lsp_attach, capabilities = capabilities})
-            lsp_setup("pyright", {on_attach = lsp_attach, capabilities = capabilities})
+            lsp_setup("lua_ls", {capabilities = capabilities})
+            lsp_setup("pyright", {capabilities = capabilities})
         end
     },
     {
