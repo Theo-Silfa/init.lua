@@ -26,11 +26,12 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
-
 --show diagnostic messages on hover in the right corner instead
 vim.diagnostic.config({
   virtual_text = false
 })
 
-vim.opt.clipboard:append("unnamedplus")
+vim.opt.splitright = true
+
+vim.opt.shortmess:append('I')
+vim.opt.showmode = false

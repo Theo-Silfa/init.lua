@@ -34,3 +34,11 @@ end)
 vim.keymap.set('n', '[t', function()
     vim.diagnostic.goto_prev({float = false})
 end)
+
+-- yank filepath and linenumber to system clipboard
+vim.keymap.set('n', '<leader>yp', function()
+    local filepath = vim.fn.expand('%')
+    local linenumber = vim.fn.line('.')
+    local fullpath = filepath .. ':' .. linenumber
+    vim.fn.setreg('+', fullpath)
+end)
