@@ -1,6 +1,9 @@
 return {
     'rose-pine/neovim',
     name = 'rose-pine',
+    dependencies = {
+        'raddari/last-color.nvim'
+    },
     config = function ()
         require('rose-pine').setup({
             styles = {
@@ -8,6 +11,7 @@ return {
                 bold = false,
             },
         })
-        vim.cmd.colorscheme("rose-pine")
+        local theme = require('last-color').recall() or 'rose-pine-main'
+        vim.cmd.colorscheme(theme)
     end
 }

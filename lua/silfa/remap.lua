@@ -42,3 +42,12 @@ vim.keymap.set('n', '<leader>yp', function()
     local fullpath = filepath .. ':' .. linenumber
     vim.fn.setreg('+', fullpath)
 end)
+
+-- toggle between light and dark theme
+vim.keymap.set('n', '<leader>tl', function()
+    if vim.o.background == 'dark' then
+        vim.cmd.colorscheme("rose-pine-dawn")
+    else
+        vim.cmd.colorscheme("rose-pine-main")
+    end
+end)
