@@ -21,7 +21,16 @@ return {
                         }
                     }
                 },
-                lualine_x = {'lsp_status', 'encoding', 'fileformat', 'filetype'},
+                lualine_x = {
+                    {
+                        function()
+                            return " "
+                        end,
+                        cond = function()
+                            return require("sidekick.nes").enabled
+                        end,
+                    },
+                    'lsp_status', 'encoding', 'fileformat', 'filetype'},
             },
 		})
 
