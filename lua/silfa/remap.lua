@@ -51,3 +51,8 @@ vim.keymap.set('n', '<leader>tl', function()
         vim.cmd.colorscheme("rose-pine-main")
     end
 end)
+
+-- tmux-like splits
+vim.keymap.set('n', '<leader>%', '<CMD>vsplit<CR>', { desc = "Vertical split" })
+vim.keymap.set('n', '<leader>"', '<CMD>split<CR>', { desc = "Horizontal split" })
+vim.keymap.set('n', '<leader>x', '<CMD>close<CR>', { desc = "Close pane" })
