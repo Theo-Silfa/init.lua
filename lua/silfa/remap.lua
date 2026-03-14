@@ -51,8 +51,3 @@ vim.keymap.set('n', '<leader>tl', function()
         vim.cmd.colorscheme("rose-pine-main")
     end
 end)
-
--- toggle nes
-vim.keymap.set('n', '<leader>tn', function()
-    require("sidekick.nes").toggle()
-end)
