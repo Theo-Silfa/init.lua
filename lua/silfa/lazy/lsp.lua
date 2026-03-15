@@ -14,19 +14,21 @@ return {
                 local opts = { buffer = args.buf }
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
                 local navic = require('nvim-navic')
+                local pickers = require('mini.extra').pickers
 
-                vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references show_line=false<cr>', opts)
+                vim.keymap.set('n', 'gr', function() pickers.lsp({scope = 'references'}) end, opts)
                 vim.keymap.set('n', 'gh', '<cmd>LspClangdSwitchSourceHeader<cr>', opts)
-                vim.keymap.set('n', 'gf', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable symbol_width=100<cr>', opts)
-                vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations fname_width=100<cr>', opts)
+                vim.keymap.set('n', 'gf', function() pickers.lsp({scope = 'document_symbol'}) end, opts)
+                vim.keymap.set('n', 'gi', function() pickers.lsp({scope = 'implementation'}) end, opts)
                 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-                vim.keymap.set('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', opts)
+                vim.keymap.set('n', 'gd', function() pickers.lsp({scope = 'definition'}) end, opts)
                 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
                 vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
                 vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
                 vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
                 vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                 vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                vim.keymap.set('n', '<leader>tt', function() pickers.diagnostic() end, {})
 
                 if client and client.server_capabilities.documentSymbolProvider then
                     navic.attach(client, args.buf)
