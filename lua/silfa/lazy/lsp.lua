@@ -54,7 +54,7 @@ return {
         opts = {
             keymap = {
                 preset = 'none',
-                ['<C-y>'] = { 'select_and_accept' },
+                ['<C-y>'] = { 'show', 'select_and_accept' },
                 ['<C-e>'] = { 'cancel' },
                 ['<Tab>'] = { 'select_next', 'fallback' },
                 ['<S-Tab>'] = { 'select_prev', 'fallback' },
@@ -67,7 +67,7 @@ return {
                     lsp = { fallbacks = {} },
                     snippets = {
                         opts = {
-                            search_paths = { vim.fn.stdpath('data') .. '/lazy/friendly-snippets/snippets/cpp' },
+                            friendly_snippets = true,
                         }
                     }
                 }
