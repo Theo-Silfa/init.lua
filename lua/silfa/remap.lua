@@ -56,3 +56,6 @@ end)
 vim.keymap.set('n', '<leader>%', '<CMD>vsplit<CR>', { desc = "Vertical split" })
 vim.keymap.set('n', '<leader>"', '<CMD>split<CR>', { desc = "Horizontal split" })
 vim.keymap.set('n', '<leader>x', '<CMD>close<CR>', { desc = "Close pane" })
+
+-- lazy shift fix
+vim.api.nvim_create_user_command('W', 'w', { desc = "Add map :W to :w"})
