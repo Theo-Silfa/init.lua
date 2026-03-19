@@ -4,6 +4,7 @@ return {
         require("fff.download").download_or_build_binary()
     end,
     opts = { -- (optional)
+        prompt = '  ',
         grep = {
             modes = { 'fuzzy', 'plain', 'regex' },
         },

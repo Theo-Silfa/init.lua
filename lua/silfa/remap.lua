@@ -59,3 +59,26 @@ vim.keymap.set('n', '<leader>x', '<CMD>close<CR>', { desc = "Close pane" })
 
 -- lazy shift fix
 vim.api.nvim_create_user_command('W', 'w', { desc = "Add map :W to :w"})
+
+--git blame toggle
+vim.keymap.set('n', '<leader>gb', function ()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+
+        if buf and vim.bo[buf].filetype == 'gitsigns-blame' then
+            if not pcall(vim.api.nvim_win_close, win, true) then
+                pcall(vim.api.nvim_buf_delete, buf, {})
+            end
+
+            return
+        end
+    end
+
+    local cur_win = vim.api.nvim_get_current_win()
+    require('gitsigns').blame()
+
+    -- Switch focus back to the original window
+    if vim.api.nvim_get_current_win() ~= cur_win then
+        vim.api.nvim_set_current_win(cur_win)
+    end
+end, { desc = "Toggle git blame" })
