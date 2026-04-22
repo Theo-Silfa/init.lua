@@ -22,12 +22,22 @@ return {
         },
         {
             "<leader>pws",
-            function() require('fff').live_grep({ query = vim.fn.expand("<cword>") }) end,
+            function() require('fff').live_grep({
+                query = vim.fn.expand("<cword>"),
+                grep = {
+                    modes = { 'plain', 'fuzzy', 'regex' },
+                },
+            }) end,
             desc = 'Search for <cword>',
         },
         {
             "<leader>pWs",
-            function() require('fff').live_grep({ query = vim.fn.expand("<cWORD>") }) end,
+            function() require('fff').live_grep({
+                query = vim.fn.expand("<cWORD>"),
+                grep = {
+                    modes = { 'plain', 'fuzzy', 'regex' },
+                },
+            }) end,
             desc = 'Search for <cWORD>',
         },
         {

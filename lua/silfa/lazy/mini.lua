@@ -31,5 +31,9 @@ return {
         vim.keymap.set('n', '<leader>vh', builtin.help, { desc = 'Search help documentation' })
         vim.keymap.set('n', '<leader>pb', builtin.buffers, { desc = 'Switch between open buffers' })
         vim.keymap.set('n', '<leader>r', builtin.resume, { desc = 'Resume last picker session' })
+
+        --fix invisible selection
+        local palette = require('rose-pine.palette')
+        vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", {fg = palette.text, bg = palette.highlight_med})
     end
 }

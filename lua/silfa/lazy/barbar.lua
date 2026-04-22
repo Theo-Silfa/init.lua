@@ -33,7 +33,7 @@ return {
         -- Pin/unpin buffer
         map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
         -- Close buffer
-        map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+        map('n', '<A-x>', '<Cmd>BufferClose<CR>', opts)
         -- Wipeout buffer
         --                 :BufferWipeout
         -- Close commands
@@ -54,6 +54,6 @@ return {
         -- :BarbarEnable - enables barbar (enabled by default)
         -- :BarbarDisable - very bad command, should never be used
 
-        map('n', '<A-x>', '<Cmd>BufferCloseAllButPinned<CR>', opts)
+        map('n', '<A-a>', '<Cmd>BufferCloseAllButPinned<CR>', opts)
     end
 }
