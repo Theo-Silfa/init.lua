@@ -28,7 +28,7 @@ vim.opt.updatetime = 50
 
 --show diagnostic messages on hover in the right corner instead
 vim.diagnostic.config({
-  virtual_text = false
+    virtual_text = false
 })
 
 vim.opt.winborder = "rounded"
@@ -51,14 +51,14 @@ then
 else
     vim.opt.clipboard:append("unnamedplus")
     vim.g.clipboard = {
-      name = 'OSC 52',
-      copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-      },
-      paste = {
-        ["+"] = my_paste(),
-        ["*"] = my_paste(),
-    },
-}
+        name = 'OSC 52',
+        copy = {
+            ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+            ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+        },
+        paste = {
+            ["+"] = my_paste(),
+            ["*"] = my_paste(),
+        },
+    }
 end

@@ -1,6 +1,6 @@
 -- open file EXplorer
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>")
-vim.keymap.set("n", "<leader>pV", function ()
+vim.keymap.set("n", "<leader>pV", function()
     require("oil").open(vim.loop.cwd())
 end)
 
@@ -19,7 +19,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 --apply fix from lsp
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 local function quickfix()
     vim.lsp.buf.code_action({
         apply = true
@@ -29,10 +29,10 @@ vim.keymap.set('n', '<leader>qf', quickfix, opts)
 
 --diagnostic navigation
 vim.keymap.set('n', ']t', function()
-    vim.diagnostic.goto_next({float = false})
+    vim.diagnostic.goto_next({ float = false })
 end)
 vim.keymap.set('n', '[t', function()
-    vim.diagnostic.goto_prev({float = false})
+    vim.diagnostic.goto_prev({ float = false })
 end)
 
 -- yank filepath and linenumber to system clipboard
@@ -58,10 +58,10 @@ vim.keymap.set('n', '<leader>"', '<CMD>split<CR>', { desc = "Horizontal split" }
 vim.keymap.set('n', '<leader>x', '<CMD>close<CR>', { desc = "Close pane" })
 
 -- lazy shift fix
-vim.api.nvim_create_user_command('W', 'w', { desc = "Add map :W to :w"})
+vim.api.nvim_create_user_command('W', 'w', { desc = "Add map :W to :w" })
 
 --git blame toggle
-vim.keymap.set('n', '<leader>gb', function ()
+vim.keymap.set('n', '<leader>gb', function()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         local buf = vim.api.nvim_win_get_buf(win)
 
