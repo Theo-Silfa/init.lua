@@ -7,7 +7,6 @@ vim.pack.add({
     "https://github.com/romgrk/barbar.nvim",
 
     -- LSP & Completion
-    "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/saghen/blink.lib",
     "https://github.com/saghen/blink.cmp",
     "https://github.com/rafamadriz/friendly-snippets",
