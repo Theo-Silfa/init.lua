@@ -29,6 +29,20 @@ cmp.setup({
     }
 })
 
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'BlinkCmpMenuOpen',
+    callback = function(args)
+        vim.lsp.inline_completion.enable(false, { bufnr = args.buf })
+    end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'BlinkCmpMenuClose',
+    callback = function(args)
+        vim.lsp.inline_completion.enable(true, { bufnr = args.buf })
+    end,
+})
+
 local lsp_attach = function(args)
     local bufnr = args.buf
     local opts = { buffer = bufnr }
