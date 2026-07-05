@@ -1,6 +1,7 @@
 require 'barbar'.setup {
     icons = {
         pinned = { button = '', filename = true },
+        animation = false, -- Disable animations
 
         -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
         preset = 'default',
