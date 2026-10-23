@@ -1,31 +1,39 @@
 {
   "plugins": {
+    "backend-tmux": {
+      "rev": "9e9e6aa9b3eb7a8d3896a993611622ac97abff52",
+      "src": "https://github.com/smart-splits-nvim/backend-tmux"
+    },
     "barbar.nvim": {
       "rev": "337ecfadb8bf005050990bf2f624dc4fc828dabd",
       "src": "https://github.com/romgrk/barbar.nvim"
     },
     "blink.cmp": {
-      "rev": "9dcb1f3a9164f10c8950a790aace576f2e89dc78",
+      "rev": "b72ed05dd452690181837d484984144a64709f17",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
-      "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
+      "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
       "src": "https://github.com/saghen/blink.lib"
     },
     "diagflow.nvim": {
       "rev": "b13321b517ff64bf42eeac2214085d3c76d83a0d",
       "src": "https://github.com/dgagn/diagflow.nvim"
     },
+    "fff": {
+      "rev": "7353971198321b5330824c29eb4e49635c072245",
+      "src": "https://github.com/dmtrKovalenko/fff"
+    },
     "fff.nvim": {
-      "rev": "18f546a4fe8939d884b495a7d761f4905ad205a3",
+      "rev": "7353971198321b5330824c29eb4e49635c072245",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "friendly-snippets": {
-      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
+      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "last-color.nvim": {
@@ -37,11 +45,11 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mini.extra": {
-      "rev": "e5ecf197f8954d002cb9e85b3715851e2c8d3cd5",
+      "rev": "7dcc3ee5ba638cca654125f40f6e3ffbc52e0dc4",
       "src": "https://github.com/nvim-mini/mini.extra"
     },
     "mini.pick": {
-      "rev": "8c1f75f8ddd8c9f75d07ed2ab5718d2c3cb65a66",
+      "rev": "7cb8fd34bde460986e5e39e9539a9f992ec9772e",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "neovim": {
@@ -49,27 +57,27 @@
       "src": "https://github.com/rose-pine/neovim"
     },
     "nvim-navic": {
-      "rev": "f5eba192f39b453675d115351808bd51276d9de5",
+      "rev": "455808fd0fae06e6d70fadfd61432275db8f34ce",
       "src": "https://github.com/SmiteshP/nvim-navic"
     },
     "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-web-devicons": {
-      "rev": "dad71387de386a946b123079d0e53f23028f3abd",
+      "rev": "ec309a0eaff6ea967e58c275996155ab5c16938d",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "opencode.nvim": {
-      "rev": "8cb752f295664ab0736ad4498f659324e506e074",
+      "rev": "e7643e9efc878876bb9c68da6cf30c45d6c34e5a",
       "src": "https://github.com/nickjvandyke/opencode.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "ebf4d8bbc16570817c0f5275468466b9d00b8d7d",
+      "rev": "3629711db18279843618fda2e908700dcdc4b040",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "vim-strip-trailing-whitespace": {

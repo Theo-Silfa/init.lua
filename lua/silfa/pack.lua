@@ -20,12 +20,13 @@ vim.pack.add({
 
     -- File Navigation
     "https://github.com/stevearc/oil.nvim",
-    "https://github.com/dmtrKovalenko/fff.nvim",
+    "https://github.com/dmtrKovalenko/fff",
     "https://github.com/nvim-mini/mini.pick",
     "https://github.com/nvim-mini/mini.extra",
 
     -- Editor Utilities
-    "https://github.com/mrjones2014/smart-splits.nvim",
+    "https://github.com/smart-splits-nvim/backend-tmux",
+    "https://github.com/smart-splits-nvim/smart-splits.nvim",
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/axelf4/vim-strip-trailing-whitespace",
 

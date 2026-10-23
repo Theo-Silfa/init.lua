@@ -1,7 +1,7 @@
 vim.g.opencode_opts = {
     server = {
         start = function()
-            vim.system({ "tmux", "split-window", "-h", "-l", "40%", "opencode", "--agent", "plan", "--port" })
+            vim.system({ "tmux", "split-window", "-h", "-l", "40%", "opencode", "--continue" })
         end
     }
 }
